@@ -1,0 +1,53 @@
+{
+  "name": "Webpack",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Pretender",
+  "license": "MIT",
+  "scripts": {
+    "clean": "rimraf dist/*",
+    "css:autoprefixer": "postcss -u autoprefixer -r dist/*.css",
+    "css:scss": "sass src/scss:dist",
+    "css:lint": "stylelint src/scss/**/*.scss --custom-syntax postcss-scss",
+    "css:lint-fix": "stylelint --fix src/scss/**/*.scss --custom-syntax postcss-scss",
+    "build:css": "yarn run css:lint && yarn run css:scss && yarn run css:autoprefixer",
+    "build:js": "webpack --mode=production",
+    "build:images": "imagemin src/images/**/* --out-dir=dist/images",
+    "build:fonts": "webpack --mode=production",
+    "build": "run-s build:*",
+    "serve": "browser-sync start --server \"dist\" --files \"dist\"",
+    "watch:css": "onchange \"src/scss\" -- npm run build:css",
+    "watch:images": "onchange \"src/images\" -- npm run build:images",
+    "watch:fonts": "onchange \"src/fonts\" -- npm run build:fonts",
+    "watch:js": "onchange \"src/js\" -- webpack --mode=development",
+    "watch": "run-p serve watch:*"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.24.0",
+    "autoprefixer": "^10.4.18",
+    "babel-loader": "^9.1.3",
+    "browser-sync": "^3.0.2",
+    "css-loader": "^6.10.0",
+    "eslint": "^8.57.0",
+    "eslint-webpack-plugin": "^4.0.1",
+    "imagemin-cli": "^7.0.0",
+    "node-sass": "^9.0.0",
+    "npm-run-all": "^4.1.5",
+    "onchange": "^7.1.0",
+    "postcss-cli": "^11.0.0",
+    "postcss-scss": "^4.0.9",
+    "style-loader": "^3.3.4",
+    "stylelint": "^16.2.1",
+    "webpack": "^5.90.3",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "@babel/core": "^7.24.0",
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.3",
+    "inclusive-dates": "^0.1.10",
+    "jquery": "^3.7.1",
+    "sass": "^1.71.1",
+    "stylelint-config-standard": "^36.0.0"
+  }
+}

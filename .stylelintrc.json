@@ -1,0 +1,7 @@
+{
+    "extends": "stylelint-config-standard",
+    "rules": {
+      "import-notation": null,
+      "color-function-notation": null
+    }
+  }
